@@ -51,9 +51,12 @@ class _IndexState extends State<Index> {
               ],
               child: MaterialApp(
                 title: 'CrowdPad',
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData.dark()
-                    .copyWith(primaryColor: GlobalColors.materialPrimaryColor),
+                theme:
+                    ThemeData(primarySwatch: GlobalColors.materialPrimaryColor),
+
+                // theme: ThemeData.dark()
+                //     .copyWith(primaryColor: GlobalColors.materialPrimaryColor),
+
                 navigatorKey:
                     getItInstance<NavigationServiceImpl>().navigationKey,
                 initialRoute: initialRoute(),
