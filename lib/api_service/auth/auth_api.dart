@@ -46,7 +46,7 @@ class AuthServiceImp extends AuthService {
           email: email, password: password);
       globalToast('Welcome to Crowdpad');
       globalPop(context: context);
-      globalReplaceWith(route: Routes.homePage);
+      globalReplaceWith(route: Routes.domain);
     } catch (e) {
       globalToast('Unable to sign you in');
       globalPop(context: context);
@@ -72,7 +72,7 @@ class AuthServiceImp extends AuthService {
           .set(user.toJson());
       globalToast('You have been registered $name');
       globalPop(context: context);
-      globalReplaceWith(route: Routes.homePage);
+      globalReplaceWith(route: Routes.domain);
     } catch (_) {
       globalPop(context: context);
       globalToast('Unable to complete registration');
