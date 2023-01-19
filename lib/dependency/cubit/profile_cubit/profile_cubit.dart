@@ -47,19 +47,4 @@ class ProfileCubit extends Cubit<ProfileState> {
   void _uploadProfilePhoto(File image) async {
     var image = await imagePicker();
   }
-
-  void uploadVideo({required BuildContext context}) async {
-    var image = await imagePicker();
-    var imageFile = File(image!.path);
-
-    state.isUploading = true;
-    _emitState();
-
-    // Response? response =
-    //     await UploadFileApi().uploadFileApi(context: context, image: image!);
-    // state.isUploading = false;
-    // if (response?.data != null) getProfile(context: context);
-
-    _emitState();
-  }
 }

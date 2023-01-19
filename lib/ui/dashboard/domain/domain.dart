@@ -6,8 +6,6 @@ import 'package:crowdpad/ui/dashboard/likes/likes.dart';
 import 'package:crowdpad/ui/global_components/bottom_nav_widget.dart';
 import 'package:crowdpad/ui/profile/profile.dart';
 
-final isVisible = ValueNotifier(true);
-
 class Domain extends StatefulWidget {
   const Domain({Key? key}) : super(key: key);
 
@@ -24,13 +22,13 @@ class _DomainState extends State<Domain> {
       const CommentsPage(),
       const ProfilePage()
     ];
-    return index < 3 ? bottomPages[index] : bottomPages[0];
+    return bottomPages[index];
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardCubit, DashboardState>(
-        builder: (context, dashboardState) {
+        builder: (context, state) {
       return WillPopScope(
         onWillPop: () async => false,
         child: ValueListenableBuilder(
@@ -42,9 +40,10 @@ class _DomainState extends State<Domain> {
                   body: Stack(
                     children: [
                       bottomPages(index: index),
-                      const Align(
-                          alignment: Alignment.bottomCenter,
-                          child: BottomNavigation()),
+                      if (state.isVisible)
+                        const Align(
+                            alignment: Alignment.bottomCenter,
+                            child: BottomNavigation()),
                     ],
                   ));
             }),

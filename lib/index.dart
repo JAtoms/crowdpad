@@ -37,7 +37,7 @@ class _IndexState extends State<Index> {
     super.dispose();
   }
 
-  String initialRoute() => Routes.signUpScreen;
+  String initialRoute() => Routes.domain;
 
   @override
   Widget build(BuildContext context) {

@@ -41,6 +41,8 @@ dependencies:
   # Pick image from gallery
   image_picker: ^0.8.4+4
 
+  lottie: ^2.2.0
+
   # Firebase setup
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
@@ -50,11 +52,12 @@ dependencies:
   # For fuzzy timestamps
   timeago: ^3.1.0
 
-#  # Compress video
-#  video_compress: ^3.1.2
+  # Compress video
+  video_compress: ^3.1.2
 
   # Video player
   video_player: ^2.2.11
+
 
 dev_dependencies:
   flutter_test:

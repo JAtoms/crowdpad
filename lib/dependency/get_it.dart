@@ -1,4 +1,4 @@
-import 'package:crowdpad/api_service/auth/auth_api.dart';
+import 'package:crowdpad/api_service/auth/fire_api.dart';
 
 import 'cubit/auth_cubit/auth_cubit.dart';
 import 'cubit/dashboard_cubit/dashboard_cubit.dart';
@@ -18,7 +18,7 @@ Future initDependencies() async {
       .registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 
   // Navigation service
-  getItInstance.registerLazySingleton<AuthServiceImp>(() => AuthServiceImp(
+  getItInstance.registerLazySingleton<FireServiceImp>(() => FireServiceImp(
       firebaseAuth: getItInstance(),
       firebaseStorage: getItInstance(),
       firebaseFirestore: getItInstance()));
@@ -29,8 +29,9 @@ Future initDependencies() async {
 
   getItInstance.registerFactory(() => ProfileCubit());
 
-  getItInstance.registerFactory(() => DashboardCubit());
+  getItInstance
+      .registerFactory(() => DashboardCubit(fireServiceImp: getItInstance()));
 
   getItInstance
-      .registerFactory(() => AuthCubit(authServiceImp: getItInstance()));
+      .registerFactory(() => AuthCubit(fireServiceImp: getItInstance()));
 }

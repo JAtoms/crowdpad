@@ -1,4 +1,4 @@
-import 'package:crowdpad/api_service/auth/auth_api.dart';
+import 'package:crowdpad/api_service/auth/fire_api.dart';
 import 'package:crowdpad/index_exports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +9,9 @@ class AuthState {
 }
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthServiceImp authServiceImp;
+  FireServiceImp fireServiceImp;
 
-  AuthCubit({required this.authServiceImp})
+  AuthCubit({required this.fireServiceImp})
       : super(AuthState(isLoading: false));
 
   void setLoading(bool isLoading) {
@@ -25,7 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
       required String name,
       required String password,
       required BuildContext context}) {
-    authServiceImp.signUp(
+    fireServiceImp.signUp(
         email: email, name: name, password: password, context: context);
   }
 
@@ -33,8 +33,8 @@ class AuthCubit extends Cubit<AuthState> {
       {required String email,
       required String password,
       required BuildContext context}) {
-    authServiceImp.signIn(email: email, password: password, context: context);
+    fireServiceImp.signIn(email: email, password: password, context: context);
   }
 
-  signOut() => authServiceImp.signOut();
+  signOut() => fireServiceImp.signOut();
 }

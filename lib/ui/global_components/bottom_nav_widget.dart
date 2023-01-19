@@ -39,9 +39,9 @@ class BottomNavigation extends StatelessWidget {
               children: const [
                 BottomNavItem(index: 0, icon: GlobalAssets.home),
                 BottomNavItem(index: 1, icon: GlobalAssets.like),
-                BottomNavItem(index: 1, icon: GlobalAssets.add),
-                BottomNavItem(index: 2, icon: GlobalAssets.comment),
-                BottomNavItem(index: 3, icon: GlobalAssets.profile),
+                BottomNavItem(index: 2, icon: GlobalAssets.add),
+                BottomNavItem(index: 3, icon: GlobalAssets.comment),
+                BottomNavItem(index: 4, icon: GlobalAssets.profile),
               ],
             ),
           ),
@@ -81,7 +81,9 @@ class _BottomNavItemState extends State<BottomNavItem> {
                   color: widget.index == value
                       ? GlobalColors.primary
                       : Colors.black12,
-                  height: 4.5.heightAdjusted),
+                  height: widget.index == 2
+                      ? 8.heightAdjusted
+                      : 4.5.heightAdjusted),
             ),
           );
         });
