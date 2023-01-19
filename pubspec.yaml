@@ -27,7 +27,7 @@ dependencies:
   fluttertoast: ^8.0.8
 
   # For SVG image
-  flutter_svg: ^0.22.0
+  flutter_svg: ^1.1.6
 
   # For state management
   flutter_bloc: ^8.0.1
@@ -41,20 +41,23 @@ dependencies:
   # Pick image from gallery
   image_picker: ^0.8.4+4
 
+  lottie: ^2.2.0
+
   # Firebase setup
-  firebase_auth: ^3.3.5
-  firebase_core: ^1.11.0
-  firebase_storage: ^10.2.5
-  cloud_firestore: ^3.1.6
+  firebase_auth: ^4.2.5
+  firebase_core: ^2.4.1
+  firebase_storage: ^11.0.10
+  cloud_firestore: ^4.3.1
 
   # For fuzzy timestamps
   timeago: ^3.1.0
 
   # Compress video
-  video_compress: ^3.1.0
+  video_compress: ^3.1.2
 
   # Video player
   video_player: ^2.2.11
+
 
 dev_dependencies:
   flutter_test:
@@ -67,10 +70,26 @@ flutter:
 
   uses-material-design: true
 
-  
-  
-  
-  
+  assets:
+    - assets/
+    - assets/svg/
+    - assets/image/
+
+  fonts:
+    - family: Bold
+      fonts:
+        - asset: fonts/Gilroy-Bold.otf
+    - family: Medium
+      fonts:
+        - asset: fonts/Gilroy-Medium.otf
+    - family: Semibold
+      fonts:
+        - asset: fonts/Gilroy-Semibold.otf
+    - family: Regular
+      fonts:
+        - asset: fonts/Gilroy-Regular.otf
+
+
 
   
   

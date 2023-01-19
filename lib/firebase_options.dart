@@ -50,21 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCL4OMd6BhbN3jGtcphxcH03W241N7MQTg',
-    appId: '1:621586262976:android:00eeb03454e5cc7d3eb625',
-    messagingSenderId: '621586262976',
-    projectId: 'gleaming-baton-369011',
-    storageBucket: 'gleaming-baton-369011.appspot.com',
+    apiKey: 'AIzaSyAgYhMU1BzR1Jm85ETXRClkMPcX0b1-1YI',
+    appId: '1:882542508988:android:bb3bd447d4d791dc0089b9',
+    messagingSenderId: '882542508988',
+    projectId: 'crowdpad',
+    storageBucket: 'crowdpad.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAvFhQcjIG9-b-kzgF0OBxJbka-GfwXNyk',
-    appId: '1:621586262976:ios:1a7caa22cff2d4323eb625',
-    messagingSenderId: '621586262976',
-    projectId: 'gleaming-baton-369011',
-    storageBucket: 'gleaming-baton-369011.appspot.com',
-    androidClientId: '621586262976-9fludf3rujvldcasp5frvcimaqglum0n.apps.googleusercontent.com',
-    iosClientId: '621586262976-hcmrct57nj6mru3gkojgvgphqjatrsav.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCFDa3a7XZQLCgHq91RnWIQraj3OJ-ekZs',
+    appId: '1:882542508988:ios:6825d963fe7a58460089b9',
+    messagingSenderId: '882542508988',
+    projectId: 'crowdpad',
+    storageBucket: 'crowdpad.appspot.com',
+    iosClientId: '882542508988-n66ce0josov32i03vsop0v6s62bjos7j.apps.googleusercontent.com',
     iosBundleId: 'com.example.crowdpad',
   );
 }

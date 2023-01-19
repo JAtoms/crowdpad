@@ -68,10 +68,10 @@ CachedNetworkImage buildCachedNetworkImage(
       fit: BoxFit.cover,
       width: SizeConfig.heightAdjusted(width),
       errorWidget: (context, url, error) => Container(
-          height: double.infinity,
+          height: 50.heightAdjusted,
           width: double.infinity,
           decoration: BoxDecoration(
-              color: GlobalColors.skyBlue.withAlpha(100),
+              color: GlobalColors.primary.withAlpha(100),
               borderRadius:
                   BorderRadius.circular(SizeConfig.heightAdjusted(3)))),
       placeholder: (context, url) => const FadeShimmer(
@@ -80,7 +80,7 @@ CachedNetworkImage buildCachedNetworkImage(
             height: 100,
             width: 60,
           ),
-      height: SizeConfig.heightAdjusted(height));
+      height: height.heightAdjusted);
 }
 
 extension FormValidator on GlobalKey<FormState> {
@@ -95,6 +95,14 @@ Future<XFile?> imagePicker() async {
   XFile? imageFile;
   try {
     imageFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  } catch (_) {}
+  return imageFile;
+}
+
+Future<XFile?> videoPicker() async {
+  XFile? imageFile;
+  try {
+    imageFile = await ImagePicker().pickVideo(source: ImageSource.gallery);
   } catch (_) {}
   return imageFile;
 }

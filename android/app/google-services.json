@@ -1,85 +1,34 @@
 {
   "project_info": {
-    "project_number": "621586262976",
-    "project_id": "gleaming-baton-369011",
-    "storage_bucket": "gleaming-baton-369011.appspot.com"
+    "project_number": "882542508988",
+    "project_id": "crowdpad",
+    "storage_bucket": "crowdpad.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:621586262976:android:c96b2948cda2fb013eb625",
-        "android_client_info": {
-          "package_name": "com.app.health.qwiva"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "621586262976-9fludf3rujvldcasp5frvcimaqglum0n.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.app.health.qwiva",
-            "certificate_hash": "6e6d3a643a552ed84482cc16d2126539bdc57c98"
-          }
-        },
-        {
-          "client_id": "621586262976-atfnqpupr53etf0ckp2hlnhts4kvmipg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCL4OMd6BhbN3jGtcphxcH03W241N7MQTg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "621586262976-atfnqpupr53etf0ckp2hlnhts4kvmipg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "621586262976-9643g0a2nsf8906udaidafjtp2ikpvfo.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.app.health.qwiva"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:621586262976:android:00eeb03454e5cc7d3eb625",
+        "mobilesdk_app_id": "1:882542508988:android:bb3bd447d4d791dc0089b9",
         "android_client_info": {
           "package_name": "com.example.crowdpad"
         }
       },
       "oauth_client": [
         {
-          "client_id": "621586262976-atfnqpupr53etf0ckp2hlnhts4kvmipg.apps.googleusercontent.com",
+          "client_id": "882542508988-0rr26p95sp4j9ls46krk0e1vlfikq5v6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCL4OMd6BhbN3jGtcphxcH03W241N7MQTg"
+          "current_key": "AIzaSyAgYhMU1BzR1Jm85ETXRClkMPcX0b1-1YI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "621586262976-atfnqpupr53etf0ckp2hlnhts4kvmipg.apps.googleusercontent.com",
+              "client_id": "882542508988-0rr26p95sp4j9ls46krk0e1vlfikq5v6.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "621586262976-9643g0a2nsf8906udaidafjtp2ikpvfo.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.app.health.qwiva"
-              }
             }
           ]
         }
