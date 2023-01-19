@@ -1,3 +1,5 @@
+import 'package:crowdpad/dependency/cubit/auth_cubit/auth_cubit.dart';
+import 'package:crowdpad/dependency/get_it.dart';
 import 'package:crowdpad/dependency/navigation/navigator_routes.dart';
 import 'package:crowdpad/helpers/global_assets.dart';
 import 'package:crowdpad/helpers/global_strings.dart';
@@ -72,16 +74,15 @@ class _SignInScreenState extends State<SignInScreen> {
                             btnText: signIn,
                             onTap: () {
                               if (formKey.validate) {
-                                // getItInstance<AuthCubit>().login(
-                                //     email: emailController.text,
-                                //     password: passwordController.text,
-                                //     context: context);
+                                getItInstance<AuthCubit>().signIn(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    context: context);
                               }
                             }),
                         SizedBox(height: SizeConfig.heightAdjusted(20)),
                         GestureDetector(
-                          onTap: () =>
-                              globalReplaceWith(route: Routes.signUpScreen),
+                          onTap: () => globalPop(context: context),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

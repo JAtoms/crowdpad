@@ -1,6 +1,9 @@
+import 'package:crowdpad/dependency/cubit/auth_cubit/auth_cubit.dart';
+import 'package:crowdpad/dependency/get_it.dart';
 import 'package:crowdpad/dependency/navigation/navigator_routes.dart';
 import 'package:crowdpad/helpers/global_assets.dart';
 import 'package:crowdpad/helpers/global_strings.dart';
+import 'package:crowdpad/helpers/helpers.dart';
 import 'package:crowdpad/helpers/measures.dart';
 import 'package:crowdpad/index_exports.dart';
 import 'package:crowdpad/ui/global_components/global_back_button.dart';
@@ -22,6 +25,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> formKey = GlobalKey();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -49,8 +53,7 @@ class _SignInScreenState extends State<SignUpScreen> {
                     padding: globalMargin(margin: Margin.horizontal),
                     child: Column(
                       children: [
-                        const GlobalBackButton(),
-                        SizedBox(height: 5.heightAdjusted),
+                        SizedBox(height: 25.heightAdjusted),
                         Align(
                             alignment: Alignment.centerLeft,
                             child: Text(createAccount,
@@ -58,6 +61,11 @@ class _SignInScreenState extends State<SignUpScreen> {
                                     fontSize: 26,
                                     color: GlobalColors.primaryBlack))),
                         SizedBox(height: 12.heightAdjusted),
+                        GlobalFormField(
+                            fieldName: 'Name',
+                            keyBoardType: TextInputType.name,
+                            textController: nameController),
+                        SizedBox(height: 5.heightAdjusted),
                         GlobalFormField(
                             fieldName: 'Email address',
                             keyBoardType: TextInputType.emailAddress,
@@ -70,18 +78,18 @@ class _SignInScreenState extends State<SignUpScreen> {
                         GlobalButton(
                             btnText: signUp,
                             onTap: () {
-                              //
-                              // if (formKey.validate) {
-                              //   getItInstance<AuthCubit>().signUp(
-                              //       email: emailController.text,
-                              //       password: passwordController.text,
-                              //       context: context);
-                              // }
+                              if (formKey.validate) {
+                                getItInstance<AuthCubit>().signUp(
+                                    name: nameController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    context: context);
+                              }
                             }),
                         SizedBox(height: 20.heightAdjusted),
                         GestureDetector(
                           onTap: () =>
-                              globalReplaceWith(route: Routes.signInScreen),
+                              globalNavigateTo(route: Routes.signInScreen),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

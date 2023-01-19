@@ -56,6 +56,7 @@ class _IndexState extends State<Index> {
               ],
               child: MaterialApp(
                 title: 'CrowdPad',
+                debugShowCheckedModeBanner: false,
                 theme:
                     ThemeData(primarySwatch: GlobalColors.materialPrimaryColor),
 

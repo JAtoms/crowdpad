@@ -48,17 +48,11 @@ class _GlobalFormFieldState extends State<GlobalFormField> {
           keyboardType: widget.keyBoardType,
           maxLines: widget.maxLines,
           autofocus: widget.isAutoFocus,
-          inputFormatters: [
-            widget.keyBoardType == TextInputType.phone
-                ? LengthLimitingTextInputFormatter(widget.maxLength)
-                : widget.keyBoardType == TextInputType.name
-                    ? FilteringTextInputFormatter.deny(RegExp(r'\s'))
-                    : LengthLimitingTextInputFormatter(widget.textLength)
-          ],
           style: GlobalTextStyles.regularText(fontSize: 16),
           decoration: InputDecoration(
             hintText: widget.fieldName,
-            hintStyle: GlobalTextStyles.regularText(color: Colors.black.withAlpha(130)),
+            hintStyle: GlobalTextStyles.regularText(
+                color: Colors.black.withAlpha(130)),
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),

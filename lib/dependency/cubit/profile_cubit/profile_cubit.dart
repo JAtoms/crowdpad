@@ -17,15 +17,11 @@ class ProfileState {
 }
 
 class ProfileCubit extends Cubit<ProfileState> {
-  FirebaseAuth firebaseAuth;
-  FirebaseStorage firebaseStorage;
-  FirebaseFirestore firebaseFirestore;
+  // FirebaseAuth firebaseAuth;
+  // FirebaseStorage firebaseStorage;
+  // FirebaseFirestore firebaseFirestore;
 
-  ProfileCubit(
-      {required this.firebaseAuth,
-      required this.firebaseStorage,
-      required this.firebaseFirestore})
-      : super(ProfileState(isUploading: false));
+  ProfileCubit() : super(ProfileState(isUploading: false));
 
   void setLoading(bool isLoading) {
     emit(ProfileState(isUploading: isLoading));
@@ -33,52 +29,20 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void _emitState() => emit(ProfileState(isUploading: state.isUploading));
 
-  // registering the user
-  void registerUser(
-      String username, String email, String password, File? image) async {
-    try {
-      if (username.isNotEmpty &&
-          email.isNotEmpty &&
-          password.isNotEmpty &&
-          image != null) {
-        // save out user to our ath and firebase firestore
-        UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        String downloadUrl = await _uploadToStorage(image);
-        UserModel user = UserModel(
-            name: username,
-            email: email,
-            uid: cred.user!.uid,
-            profilePhoto: downloadUrl);
-        await firebaseFirestore
-            .collection('users')
-            .doc(cred.user!.uid)
-            .set(user.toJson());
-      } else {
-        globaLog('Registration error',
-            'Error Creating Account Please enter all the fields');
-      }
-    } catch (_) {
-      globaLog('Registration exception', _.toString());
-    }
-  }
-
-  Future<String> _uploadToStorage(File image) async {
-    String downloadUrl = '';
-    Reference ref = firebaseStorage
-        .ref()
-        .child('profilePics')
-        .child(firebaseAuth.currentUser!.uid);
-
-    UploadTask uploadTask = ref.putFile(image);
-    await uploadTask.then((value) async {
-      downloadUrl = await value.ref.getDownloadURL();
-    });
-
-    return downloadUrl;
-  }
+  // Future<String> _uploadToStorage(File image) async {
+  //   String downloadUrl = '';
+  //   Reference ref = firebaseStorage
+  //       .ref()
+  //       .child('profilePics')
+  //       .child(firebaseAuth.currentUser!.uid);
+  //
+  //   UploadTask uploadTask = ref.putFile(image);
+  //   await uploadTask.then((value) async {
+  //     downloadUrl = await value.ref.getDownloadURL();
+  //   });
+  //
+  //   return downloadUrl;
+  // }
 
   void _uploadProfilePhoto(File image) async {
     var image = await imagePicker();
