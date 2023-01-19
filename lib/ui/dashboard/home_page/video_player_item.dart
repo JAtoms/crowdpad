@@ -1,51 +1,68 @@
+import 'package:cached_video_player/cached_video_player.dart';
+import 'package:crowdpad/helpers/text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
 
-  const VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  const VideoPlayerItem({
+    Key? key,
+    required this.videoUrl,
+  }) : super(key: key);
 
   @override
-  VideoPlayerItemState createState() => VideoPlayerItemState();
+  _VideoPlayerItemState createState() => _VideoPlayerItemState();
 }
 
-class VideoPlayerItemState extends State<VideoPlayerItem> {
+class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController videoPlayerController;
+  late CachedVideoPlayerController controller;
 
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((value) {
-        videoPlayerController.play();
-        videoPlayerController.setVolume(1);
-      });
+
+    controller = CachedVideoPlayerController.network(widget.videoUrl);
+    controller.initialize().then((value) {
+      controller.play();
+      controller.setVolume(40);
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    videoPlayerController.dispose();
+    controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
-      width: size.width,
-      height: size.height,
-      decoration: const BoxDecoration(color: Colors.black),
-      child: GestureDetector(
-          onTap: () {
-            setState(() {
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
-            });
-          },
-          child: VideoPlayer(videoPlayerController)),
-    );
+    return controller.value.isInitialized
+        ? CachedVideoPlayer(controller)
+        : Container(
+            height: size.height,
+            width: size.width,
+            color: Colors.black,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CupertinoActivityIndicator(color: Colors.white),
+                    const SizedBox(width: 10),
+                    Text('Loading...',
+                        style:
+                            GlobalTextStyles.regularText(color: Colors.white))
+                  ],
+                ),
+              ],
+            ),
+          );
   }
 }

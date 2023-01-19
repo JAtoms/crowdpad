@@ -42,6 +42,7 @@ class _CrowdPadVideoPlayerState extends State<CrowdPadVideoPlayer> {
   @override
   void dispose() {
     super.dispose();
+
     _controller.dispose();
   }
 

@@ -58,6 +58,9 @@ dependencies:
   # Video player
   video_player: ^2.2.11
 
+  cached_video_player: ^2.0.3
+
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
