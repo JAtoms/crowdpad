@@ -30,6 +30,8 @@ abstract class FireService {
 
   Future<void> signOut();
 
+  Stream<QuerySnapshot> getVideos();
+
   Future<String> uploadMedia({required File image});
 
   Future<void> uploadVideo(
@@ -96,6 +98,11 @@ class FireServiceImp extends FireService {
 
   @override
   Future<void> signOut() async => await firebaseAuth.signOut();
+
+  @override
+  Stream<QuerySnapshot> getVideos() {
+    return FirebaseFirestore.instance.collection('videos').snapshots();
+  }
 
   @override
   Future<String> uploadMedia({required File image}) async {
@@ -165,7 +172,7 @@ class FireServiceImp extends FireService {
       String videoUrl = await _uploadVideoToStorage("Video $len", videoFile);
       String thumbnail = await _uploadImageToStorage("Video $len", videoFile);
 
-      Video video = Video(
+      VideoModel video = VideoModel(
         username: (userDoc.data()! as Map<String, dynamic>)['name'],
         uid: uid,
         id: "Video $len",
