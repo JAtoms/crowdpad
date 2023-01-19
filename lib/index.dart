@@ -1,5 +1,7 @@
 import 'package:crowdpad/dependency/get_it.dart';
 
+import 'dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'dependency/cubit/profile_cubit/profile_cubit.dart';
 import 'dependency/get_it_service_exports.dart';
 import 'dependency/navigation/global_router.dart';
 import 'dependency/navigation/global_router_exports.dart';
@@ -13,19 +15,21 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-  // late AuthCubit _authCubit;
+  late ProfileCubit _profileCubit;
+  late DashboardCubit _dashboardCubit;
 
   @override
   void initState() {
-    // _authCubit = getItInstance<AuthCubit>();
+    _profileCubit = getItInstance<ProfileCubit>();
+    _dashboardCubit = getItInstance<DashboardCubit>();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    // _authCubit.close();
-
+    _profileCubit.close();
+    _dashboardCubit.close();
     super.dispose();
   }
 
@@ -42,14 +46,14 @@ class _IndexState extends State<Index> {
             SizeConfig().init(constraints, orientation);
             return MultiBlocProvider(
               providers: [
-                // BlocProvider.value(value: _authCubit),
+                BlocProvider.value(value: _profileCubit),
+                BlocProvider.value(value: _dashboardCubit),
               ],
               child: MaterialApp(
                 title: 'CrowdPad',
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  primarySwatch: GlobalColors.materialPrimaryColor,
-                ),
+                theme: ThemeData.dark()
+                    .copyWith(primaryColor: GlobalColors.materialPrimaryColor),
                 navigatorKey:
                     getItInstance<NavigationServiceImpl>().navigationKey,
                 initialRoute: initialRoute(),

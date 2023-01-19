@@ -1,3 +1,5 @@
+import 'cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'cubit/profile_cubit/profile_cubit.dart';
 import 'get_it_service_exports.dart';
 
 final getItInstance = GetIt.I;
@@ -13,7 +15,7 @@ Future initDependencies() async {
   getItInstance.registerLazySingleton<NavigationServiceImpl>(
       () => NavigationServiceImpl());
 
-  // Auth cubit
-  // getItInstance
-  //     .registerFactory(() => AuthCubit(authServiceImp: getItInstance()));
+  getItInstance.registerFactory(() => ProfileCubit());
+
+  getItInstance.registerFactory(() => DashboardCubit());
 }
