@@ -71,7 +71,7 @@ CachedNetworkImage buildCachedNetworkImage(
           height: double.infinity,
           width: double.infinity,
           decoration: BoxDecoration(
-              color: GlobalColors.skyBlue.withAlpha(100),
+              color: GlobalColors.primary.withAlpha(100),
               borderRadius:
                   BorderRadius.circular(SizeConfig.heightAdjusted(3)))),
       placeholder: (context, url) => const FadeShimmer(

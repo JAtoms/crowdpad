@@ -1,3 +1,4 @@
+import 'cubit/auth_cubit/auth_cubit.dart';
 import 'cubit/dashboard_cubit/dashboard_cubit.dart';
 import 'cubit/profile_cubit/profile_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +19,12 @@ Future initDependencies() async {
   getItInstance.registerLazySingleton<NavigationServiceImpl>(
       () => NavigationServiceImpl());
 
-  getItInstance.registerFactory(() => ProfileCubit());
+  getItInstance.registerFactory(() => ProfileCubit(
+      firebaseAuth: getItInstance(),
+      firebaseStorage: getItInstance(),
+      firebaseFirestore: getItInstance()));
 
   getItInstance.registerFactory(() => DashboardCubit());
+
+  getItInstance.registerFactory(() => AuthCubit());
 }
