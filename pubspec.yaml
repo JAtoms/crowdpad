@@ -1,0 +1,99 @@
+name: crowdpad
+description: A new Flutter crowdpad project.
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.1 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+
+  # shimmer effect
+  fade_shimmer: ^2.0.1
+
+  # Google fonts
+  google_fonts:
+
+  # Case
+  recase: ^4.1.0
+
+  # For Toast messages
+  fluttertoast: ^8.0.8
+
+  # For SVG image
+  flutter_svg: ^0.22.0
+
+  # For state management
+  flutter_bloc: ^8.0.1
+
+  # For dependencies
+  get_it: ^7.2.0
+
+  # Load and Catch Image
+  cached_network_image: ^3.2.0
+
+  # Pick image from gallery
+  image_picker: ^0.8.4+4
+
+  # Firebase setup
+  firebase_auth: ^3.3.5
+  firebase_core: ^1.11.0
+  firebase_storage: ^10.2.5
+  cloud_firestore: ^3.1.6
+
+  # For fuzzy timestamps
+  timeago: ^3.1.0
+
+  # Compress video
+  video_compress: ^3.1.0
+
+  # Video player
+  video_player: ^2.2.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
