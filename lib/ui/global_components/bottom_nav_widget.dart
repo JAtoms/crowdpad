@@ -39,6 +39,7 @@ class BottomNavigation extends StatelessWidget {
               children: const [
                 BottomNavItem(index: 0, icon: GlobalAssets.home),
                 BottomNavItem(index: 1, icon: GlobalAssets.like),
+                BottomNavItem(index: 1, icon: GlobalAssets.add),
                 BottomNavItem(index: 2, icon: GlobalAssets.comment),
                 BottomNavItem(index: 3, icon: GlobalAssets.profile),
               ],
