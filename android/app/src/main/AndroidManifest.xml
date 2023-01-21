@@ -5,8 +5,8 @@
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="crowdpad"
+        android:icon="@mipmap/launcher_icon"
+        android:label="Crowdpad"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

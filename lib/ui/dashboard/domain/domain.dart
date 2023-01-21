@@ -1,10 +1,13 @@
-import 'package:crowdpad/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
-import 'package:crowdpad/index_exports.dart';
-import 'package:crowdpad/ui/dashboard/add_video/add_video.dart';
-import 'package:crowdpad/ui/dashboard/comments/comments.dart';
-import 'package:crowdpad/ui/dashboard/likes/likes.dart';
-import 'package:crowdpad/ui/global_components/bottom_nav_widget.dart';
-import 'package:crowdpad/ui/profile/profile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tiktok_flutter/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'package:tiktok_flutter/ui/dashboard/profile/profile_screen.dart';
+import 'package:tiktok_flutter/ui/global_components/bottom_nav_widget.dart';
+
+import '../home/home_page.dart';
+import '../upload_video/upload_video.dart';
+
+var initialPageIndex = ValueNotifier(0);
 
 class Domain extends StatefulWidget {
   const Domain({Key? key}) : super(key: key);
@@ -15,14 +18,19 @@ class Domain extends StatefulWidget {
 
 class _DomainState extends State<Domain> {
   Widget bottomPages({required int index}) {
-    final bottomPages = [
-      const HomePage(),
-      const LikesPage(),
-      const AddVideoPage(),
-      const CommentsPage(),
-      const ProfilePage()
-    ];
-    return bottomPages[index];
+    final bottomPages = [HomePage(), ProfileScreen()];
+    if (index == 2) {
+      initialPageIndex.value = initialPageIndex.value;
+    } else {
+      initialPageIndex.value = index;
+    }
+    return bottomPages[initialPageIndex.value];
+  }
+
+  @override
+  void initState() {
+    context.read<DashboardCubit>().getVideos();
+    super.initState();
   }
 
   @override
@@ -35,15 +43,15 @@ class _DomainState extends State<Domain> {
             valueListenable: pagePosition,
             builder: (context, index, child) {
               return Scaffold(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.black,
                   resizeToAvoidBottomInset: false,
                   body: Stack(
                     children: [
                       bottomPages(index: index),
-                      if (state.isVisible)
-                        const Align(
-                            alignment: Alignment.bottomCenter,
-                            child: BottomNavigation()),
+                      if (index == 2) UploadVideo(),
+                      const Align(
+                          alignment: Alignment.bottomCenter,
+                          child: BottomNavigation())
                     ],
                   ));
             }),

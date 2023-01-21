@@ -106,3 +106,11 @@ Future<XFile?> videoPicker() async {
   } catch (_) {}
   return imageFile;
 }
+
+Future<XFile?> videoRecorder() async {
+  XFile? imageFile;
+  try {
+    imageFile = await ImagePicker().pickVideo(source: ImageSource.camera);
+  } catch (_) {}
+  return imageFile;
+}

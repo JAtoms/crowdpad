@@ -1,6 +1,6 @@
-import 'package:crowdpad/dependency/get_it.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_flutter/dependency/get_it.dart';
 
 import 'navigation_service.dart';
 

@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:crowdpad/index_exports.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tiktok_flutter/helpers/size_config.dart';
 
 import '../../../helpers/global_assets.dart';
 
@@ -19,9 +20,9 @@ class BottomNavigation extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.symmetric(
-              horizontal: 5.heightAdjusted, vertical: 5.heightAdjusted),
+              horizontal: 18.heightAdjusted, vertical: 5.heightAdjusted),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xff333333),
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
@@ -38,10 +39,8 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 BottomNavItem(index: 0, icon: GlobalAssets.home),
-                BottomNavItem(index: 1, icon: GlobalAssets.like),
                 BottomNavItem(index: 2, icon: GlobalAssets.add),
-                BottomNavItem(index: 3, icon: GlobalAssets.comment),
-                BottomNavItem(index: 4, icon: GlobalAssets.profile),
+                BottomNavItem(index: 1, icon: GlobalAssets.profile),
               ],
             ),
           ),
@@ -79,8 +78,8 @@ class _BottomNavItemState extends State<BottomNavItem> {
               color: Colors.transparent,
               child: SvgPicture.asset(widget.icon,
                   color: widget.index == value
-                      ? GlobalColors.primary
-                      : Colors.black12,
+                      ? Color(0xffb0b0b0)
+                      : Color(0xff444444),
                   height: widget.index == 2
                       ? 8.heightAdjusted
                       : 4.5.heightAdjusted),
