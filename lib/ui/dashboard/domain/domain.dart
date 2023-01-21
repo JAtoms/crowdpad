@@ -5,6 +5,9 @@ import 'package:tiktok_flutter/ui/dashboard/profile/profile_screen.dart';
 import 'package:tiktok_flutter/ui/global_components/bottom_nav_widget.dart';
 
 import '../home/home_page.dart';
+import '../upload_video/upload_video.dart';
+
+var initialPageIndex = ValueNotifier(0);
 
 class Domain extends StatefulWidget {
   const Domain({Key? key}) : super(key: key);
@@ -15,8 +18,13 @@ class Domain extends StatefulWidget {
 
 class _DomainState extends State<Domain> {
   Widget bottomPages({required int index}) {
-    final bottomPages = [HomePage(), HomePage(), ProfileScreen()];
-    return bottomPages[index];
+    final bottomPages = [HomePage(), ProfileScreen()];
+    if (index == 2) {
+      initialPageIndex.value = initialPageIndex.value;
+    } else {
+      initialPageIndex.value = index;
+    }
+    return bottomPages[initialPageIndex.value];
   }
 
   @override
@@ -40,6 +48,7 @@ class _DomainState extends State<Domain> {
                   body: Stack(
                     children: [
                       bottomPages(index: index),
+                      if (index == 2) UploadVideo(),
                       const Align(
                           alignment: Alignment.bottomCenter,
                           child: BottomNavigation())

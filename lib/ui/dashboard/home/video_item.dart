@@ -4,7 +4,7 @@ import 'package:tiktok_flutter/data/video.dart';
 import 'package:tiktok_flutter/helpers/size_config.dart';
 import 'package:tiktok_flutter/helpers/text_styles.dart';
 import 'package:tiktok_flutter/ui/dashboard/home/actions_toolbar.dart';
-import 'package:video_player/video_player.dart';
+import 'package:cached_video_player/cached_video_player.dart';
 
 import 'side_colum_item.dart';
 
@@ -30,7 +30,7 @@ class VideoItem extends StatelessWidget {
                   child: SizedBox(
                     width: video.controller?.value.size.width ?? 0,
                     height: video.controller?.value.size.height ?? 0,
-                    child: VideoPlayer(video.controller!),
+                    child: CachedVideoPlayer(video.controller!),
                   ),
                 )),
               )

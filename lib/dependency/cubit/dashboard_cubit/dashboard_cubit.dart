@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:cached_video_player/cached_video_player.dart';
+import 'package:tiktok_flutter/api_service/fire_api.dart';
+import 'package:tiktok_flutter/api_service/fire_apis.dart';
 import 'package:tiktok_flutter/data/video.dart';
-import 'package:tiktok_flutter/fire_api/fire_api.dart';
-import 'package:tiktok_flutter/fire_api/fire_apis.dart';
 import 'package:tiktok_flutter/helpers/helpers.dart';
 import 'package:video_player/video_player.dart';
 
 class DashboardState {
-  VideoPlayerController? controller;
+  CachedVideoPlayerController? controller;
   List<Video> videoList = [];
   int prevVideo = 0;
   int actualScreen = 0;
@@ -114,8 +115,4 @@ class DashboardCubit extends Cubit<DashboardState> {
 //   _emitState();
 // }
 
-  void uploadVideo({required String title, required String description}) async {
-    fireServiceImp.uploadVideo(
-        videoFile: state.videoPath!, title: title, description: description);
-  }
 }

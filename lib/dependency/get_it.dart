@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:tiktok_flutter/fire_api/fire_apis.dart';
+import 'package:tiktok_flutter/api_service/fire_apis.dart';
 
 import 'cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'cubit/upload_cubit/upload_cubit.dart';
 import 'get_it_service_exports.dart';
 
 final getItInstance = GetIt.I;
@@ -28,6 +29,6 @@ Future initDependencies() async {
   getItInstance
       .registerFactory(() => DashboardCubit(fireServiceImp: getItInstance()));
 
-  // getItInstance
-  //     .registerFactory(() => AuthCubit(fireServiceImp: getItInstance()));
+  getItInstance
+      .registerFactory(() => UploadVideoCubit(fireServiceImp: getItInstance()));
 }

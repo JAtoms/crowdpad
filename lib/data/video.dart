@@ -1,3 +1,4 @@
+import 'package:cached_video_player/cached_video_player.dart';
 import 'package:video_player/video_player.dart';
 
 class Video {
@@ -10,7 +11,7 @@ class Video {
   String comments;
   String url;
 
-  VideoPlayerController? controller;
+  CachedVideoPlayerController? controller;
 
   Video(
       {required this.id,
@@ -46,7 +47,7 @@ class Video {
   }
 
   Future<Null> loadController() async {
-    controller = VideoPlayerController.network(url);
+    controller = CachedVideoPlayerController.network(url);
     await controller?.initialize();
     controller?.setLooping(true);
   }
