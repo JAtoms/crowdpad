@@ -4,12 +4,12 @@ A new Flutter crowdpad project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project enables you to upload videos to Firebase, fetch them and play them like TikTok
 
-A few resources to get you started if this is your first Flutter project:
+Here are resources to the project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Download APK](https://github.com/JAtoms/crowdpad/blob/d80e7dc27329571b2a6752c817322b1013941393/assets/app-armeabi-v7a-release.apk)
+- [Explainer video](https://drive.google.com/file/d/15QpTzfRzDRbfzHnmm7uJY1zqtMHmEkrA/view?usp=sharing)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
