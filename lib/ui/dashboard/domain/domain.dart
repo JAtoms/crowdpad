@@ -43,7 +43,7 @@ class _DomainState extends State<Domain> {
             valueListenable: pagePosition,
             builder: (context, index, child) {
               return Scaffold(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.black,
                   resizeToAvoidBottomInset: false,
                   body: Stack(
                     children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,43 +40,73 @@ class _UploadVideoState extends State<UploadVideo> {
               Lottie.asset('assets/image/20432-client-gallery.zip',
                   height: 40.heightAdjusted),
               Spacer(),
-              InkWell(
-                  onTap: () => context.read<UploadVideoCubit>().pickVideo(),
-                  borderRadius: BorderRadius.circular(20),
-                  child:
-                      Stack(alignment: AlignmentDirectional.center, children: [
-                    Container(
-                      width: double.infinity,
-                      height: 15.heightAdjusted,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 4.heightAdjusted,
-                          vertical: 4.heightAdjusted),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 4.heightAdjusted),
-                      decoration: BoxDecoration(
-                          color: Colors.black38,
-                          border:
-                              Border.all(color: GlobalColors.textFieldStroke),
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Row(
-                        children: [
-                          Image.asset(GlobalAssets.gallery),
-                          SizedBox(width: 4.heightAdjusted),
-                          Text('Tap to upload video',
-                              style: GlobalTextStyles.medium(
-                                  fontSize: 16, color: Colors.white70)),
-                        ],
-                      ),
-                    ),
-                    if (state.isLoading)
-                      CupertinoActivityIndicator(color: GlobalColors.primary),
-                  ])),
+              Row(
+                children: [
+                  MediaSelectItem(
+                    onTap: () => context.read<UploadVideoCubit>().pickVideo(),
+                    image: GlobalAssets.gallery,
+                    itemName: 'Pick from gallery',
+                  ),
+                  MediaSelectItem(
+                    onTap: () => context.read<UploadVideoCubit>().recordVideo(),
+                    image: GlobalAssets.camera,
+                    itemName: 'Record a video',
+                  ),
+                ],
+              ),
               SizedBox(height: 10.heightAdjusted)
             ],
           ),
         ),
       );
     });
+  }
+}
+
+class MediaSelectItem extends StatelessWidget {
+  const MediaSelectItem(
+      {Key? key,
+      required this.image,
+      required this.itemName,
+      required this.onTap})
+      : super(key: key);
+
+  final Function() onTap;
+  final String image, itemName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(alignment: AlignmentDirectional.center, children: [
+            Container(
+              width: double.infinity,
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(
+                  horizontal: 4.heightAdjusted, vertical: 4.heightAdjusted),
+              margin: EdgeInsets.symmetric(horizontal: 4.heightAdjusted),
+              decoration: BoxDecoration(
+                  color: Colors.black38,
+                  border: Border.all(color: GlobalColors.textFieldStroke),
+                  borderRadius: BorderRadius.circular(30)),
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    image,
+                    height: 10.heightAdjusted,
+                    color: Colors.white70,
+                  ),
+                  SizedBox(width: 6.heightAdjusted),
+                  Text(itemName,
+                      textAlign: TextAlign.center,
+                      style: GlobalTextStyles.medium(
+                          fontSize: 14, color: Colors.white70)),
+                ],
+              ),
+            ),
+          ])),
+    );
   }
 }

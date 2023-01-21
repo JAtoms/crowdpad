@@ -38,10 +38,14 @@ dependencies:
   # Pick image from gallery
   image_picker: ^0.8.4+4
 
+  # For lottie animations
   lottie: ^2.2.0
 
-  stacked_services: ^0.8.6
-  stacked: ^2.1.7
+  # For rive
+  rive: ^0.10.1
+
+  custom_refresh_indicator: ^2.0.1
+
   cached_network_image: ^3.0.0
   cached_video_player: ^2.0.3
 
@@ -53,7 +57,26 @@ dependencies:
   firebase_storage: ^11.0.10
   cloud_firestore: ^4.3.1
 
+flutter_native_splash:
+  color: "#000000"
+  image: assets/image/logo.png
+  android: true
+  ios: true
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/image/logo.jpeg"
+  min_sdk_android: 21
+
 dev_dependencies:
+
+  # Launcher Icons
+  flutter_launcher_icons: ^0.11.0
+
+  # Splash screen
+  flutter_native_splash: 2.2.13
+
   flutter_test:
     sdk: flutter
 

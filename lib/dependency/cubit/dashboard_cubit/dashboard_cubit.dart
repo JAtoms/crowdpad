@@ -33,7 +33,7 @@ class DashboardCubit extends Cubit<DashboardState> {
             controller: null,
             videoList: [],
             prevVideo: 0,
-            isLoading: false,
+            isLoading: true,
             videoPath: null,
             actualScreen: 0));
 
@@ -47,9 +47,10 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   getVideos() async {
     await FireApi().getVideoList().then((value) => state.videoList = value);
-    loadVideo(2);
-    loadVideo(1);
     loadVideo(0);
+    loadVideo(1);
+    state.isLoading = false;
+    _emitState();
   }
 
   changeVideo(index) async {

@@ -42,6 +42,18 @@ class UploadVideoCubit extends Cubit<UploadVideoState> {
     _emitState();
   }
 
+  void recordVideo() async {
+    var video = await videoRecorder();
+    if (video != null) {
+      state.videoPath = File(video.path);
+      globalNavigateTo(route: Routes.previewScreen, arguments: state.videoPath);
+      pagePosition.value = 0;
+    } else {
+      globalToast('Unable to record video');
+    }
+    _emitState();
+  }
+
   Future<File?> chooseAnotherVideo() async {
     var video = await videoPicker();
     if (video != null) {
