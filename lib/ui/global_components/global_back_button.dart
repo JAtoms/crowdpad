@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:crowdpad/index_exports.dart';
+import 'package:flutter/material.dart';
+import 'package:tiktok_flutter/helpers/size_config.dart';
 
 import '../../dependency/navigation/navigator_routes.dart';
 

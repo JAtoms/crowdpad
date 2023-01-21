@@ -1,6 +1,6 @@
-import 'package:crowdpad/helpers/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tiktok_flutter/helpers/text_styles.dart';
 
 import '../../helpers/colors.dart';
 

@@ -1,10 +1,10 @@
-import 'package:crowdpad/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
-import 'package:crowdpad/index_exports.dart';
-import 'package:crowdpad/ui/dashboard/add_video/add_video.dart';
-import 'package:crowdpad/ui/dashboard/comments/comments.dart';
-import 'package:crowdpad/ui/dashboard/likes/likes.dart';
-import 'package:crowdpad/ui/global_components/bottom_nav_widget.dart';
-import 'package:crowdpad/ui/profile/profile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tiktok_flutter/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'package:tiktok_flutter/ui/global_components/bottom_nav_widget.dart';
+import 'package:tiktok_flutter/ui/profile/profile_screen.dart';
+
+import '../home/home_page.dart';
 
 class Domain extends StatefulWidget {
   const Domain({Key? key}) : super(key: key);
@@ -16,11 +16,11 @@ class Domain extends StatefulWidget {
 class _DomainState extends State<Domain> {
   Widget bottomPages({required int index}) {
     final bottomPages = [
-      const HomePage(),
-      const LikesPage(),
-      const AddVideoPage(),
-      const CommentsPage(),
-      const ProfilePage()
+      HomePage(),
+      HomePage(),
+      HomePage(),
+      HomePage(),
+      ProfileScreen()
     ];
     return bottomPages[index];
   }
@@ -40,10 +40,9 @@ class _DomainState extends State<Domain> {
                   body: Stack(
                     children: [
                       bottomPages(index: index),
-                      if (state.isVisible)
-                        const Align(
-                            alignment: Alignment.bottomCenter,
-                            child: BottomNavigation()),
+                      const Align(
+                          alignment: Alignment.bottomCenter,
+                          child: BottomNavigation())
                     ],
                   ));
             }),

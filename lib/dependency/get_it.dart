@@ -1,11 +1,9 @@
-import 'package:crowdpad/api_service/auth/fire_api.dart';
-
-import 'cubit/auth_cubit/auth_cubit.dart';
-import 'cubit/dashboard_cubit/dashboard_cubit.dart';
-import 'cubit/profile_cubit/profile_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:tiktok_flutter/fire_api/fire_apis.dart';
+
+import 'cubit/dashboard_cubit/dashboard_cubit.dart';
 import 'get_it_service_exports.dart';
 
 final getItInstance = GetIt.I;
@@ -16,8 +14,6 @@ Future initDependencies() async {
   getItInstance.registerSingleton<FirebaseStorage>(FirebaseStorage.instance);
   getItInstance
       .registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
-
-  // Navigation service
   getItInstance.registerLazySingleton<FireServiceImp>(() => FireServiceImp(
       firebaseAuth: getItInstance(),
       firebaseStorage: getItInstance(),
@@ -27,11 +23,11 @@ Future initDependencies() async {
   getItInstance.registerLazySingleton<NavigationServiceImpl>(
       () => NavigationServiceImpl());
 
-  getItInstance.registerFactory(() => ProfileCubit());
+  // getItInstance.registerFactory(() => ProfileCubit());
 
   getItInstance
       .registerFactory(() => DashboardCubit(fireServiceImp: getItInstance()));
 
-  getItInstance
-      .registerFactory(() => AuthCubit(fireServiceImp: getItInstance()));
+  // getItInstance
+  //     .registerFactory(() => AuthCubit(fireServiceImp: getItInstance()));
 }

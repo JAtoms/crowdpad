@@ -1,7 +1,8 @@
 import 'dart:io';
-
-import 'package:crowdpad/index_exports.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tiktok_flutter/helpers/colors.dart';
+import 'package:tiktok_flutter/helpers/size_config.dart';
 
 import '../../../helpers/global_assets.dart';
 

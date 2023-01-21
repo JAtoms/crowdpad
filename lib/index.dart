@@ -1,12 +1,14 @@
-import 'package:crowdpad/dependency/cubit/auth_cubit/auth_cubit.dart';
-import 'package:crowdpad/dependency/get_it.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tiktok_flutter/dependency/get_it.dart';
+import 'package:tiktok_flutter/helpers/colors.dart';
 
 import 'dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
-import 'dependency/cubit/profile_cubit/profile_cubit.dart';
 import 'dependency/get_it_service_exports.dart';
 import 'dependency/navigation/global_router.dart';
 import 'dependency/navigation/global_router_exports.dart';
-import 'index_exports.dart';
+import 'helpers/size_config.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -16,24 +18,24 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-  late ProfileCubit _profileCubit;
+  // late ProfileCubit _profileCubit;
   late DashboardCubit _dashboardCubit;
-  late AuthCubit _authCubit;
+  // late AuthCubit _authCubit;
 
   @override
   void initState() {
-    _profileCubit = getItInstance<ProfileCubit>();
+    // _profileCubit = getItInstance<ProfileCubit>();
     _dashboardCubit = getItInstance<DashboardCubit>();
-    _authCubit = getItInstance<AuthCubit>();
+    // _authCubit = getItInstance<AuthCubit>();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _profileCubit.close();
+    // _profileCubit.close();
     _dashboardCubit.close();
-    _authCubit.close();
+    // _authCubit.close();
     super.dispose();
   }
 
@@ -50,19 +52,15 @@ class _IndexState extends State<Index> {
             SizeConfig().init(constraints, orientation);
             return MultiBlocProvider(
               providers: [
-                BlocProvider.value(value: _profileCubit),
+                // BlocProvider.value(value: _profileCubit),
                 BlocProvider.value(value: _dashboardCubit),
-                BlocProvider.value(value: _authCubit),
+                // BlocProvider.value(value: _authCubit),
               ],
               child: MaterialApp(
                 title: 'CrowdPad',
                 debugShowCheckedModeBanner: false,
                 theme:
                     ThemeData(primarySwatch: GlobalColors.materialPrimaryColor),
-
-                // theme: ThemeData.dark()
-                //     .copyWith(primaryColor: GlobalColors.materialPrimaryColor),
-
                 navigatorKey:
                     getItInstance<NavigationServiceImpl>().navigationKey,
                 initialRoute: initialRoute(),
