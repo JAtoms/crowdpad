@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tiktok_flutter/data/video.dart';
 import 'package:tiktok_flutter/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
-import 'package:tiktok_flutter/widgets/actions_toolbar.dart';
-import 'package:tiktok_flutter/widgets/video_description.dart';
-import 'package:video_player/video_player.dart';
+
+import 'for_you_widget.dart';
+import 'video_item.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -14,12 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    context.read<DashboardCubit>().getVideos();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardCubit, DashboardState>(
@@ -39,91 +32,14 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   index = index % (state.videoList.length);
-                  return videoCard(state.videoList[index]);
+                  return VideoItem(video: state.videoList[index]);
                 },
               ),
-              // SafeArea(
-              //   child: Container(
-              //     padding: EdgeInsets.only(top: 20),
-              //     child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         crossAxisAlignment: CrossAxisAlignment.center,
-              //         children: <Widget>[
-              //           Text('Following',
-              //               style: TextStyle(
-              //                   fontSize: 17.0,
-              //                   fontWeight: FontWeight.normal,
-              //                   color: Colors.white70)),
-              //           SizedBox(
-              //             width: 7,
-              //           ),
-              //           Container(
-              //             color: Colors.white70,
-              //             height: 10,
-              //             width: 1.0,
-              //           ),
-              //           SizedBox(
-              //             width: 7,
-              //           ),
-              //           Text('For You',
-              //               style: TextStyle(
-              //                   fontSize: 17.0,
-              //                   fontWeight: FontWeight.bold,
-              //                   color: Colors.white))
-              //         ]),
-              //   ),
-              // ),
+              ForYouWidget(),
             ],
           ),
         );
       },
-    );
-  }
-
-  Widget videoCard(Video video) {
-    return Stack(
-      children: [
-        video.controller != null
-            ? GestureDetector(
-                onTap: () {
-                  if (video.controller!.value.isPlaying) {
-                    video.controller?.pause();
-                  } else {
-                    video.controller?.play();
-                  }
-                },
-                child: SizedBox.expand(
-                    child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: SizedBox(
-                    width: video.controller?.value.size.width ?? 0,
-                    height: video.controller?.value.size.height ?? 0,
-                    child: VideoPlayer(video.controller!),
-                  ),
-                )),
-              )
-            : Container(
-                color: Colors.black,
-                child: Center(
-                  child: Text("Loading"),
-                ),
-              ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                VideoDescription(video.user, video.videoTitle, video.songName),
-                ActionsToolbar(video.likes, video.comments,
-                    "https://www.andersonsobelcosmetic.com/wp-content/uploads/2018/09/chin-implant-vs-fillers-best-for-improving-profile-bellevue-washington-chin-surgery.jpg"),
-              ],
-            ),
-            SizedBox(height: 20)
-          ],
-        ),
-      ],
     );
   }
 }

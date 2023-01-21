@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:tiktok_flutter/data/video.dart';
 import 'package:tiktok_flutter/fire_api/fire_api.dart';
 import 'package:tiktok_flutter/fire_api/fire_apis.dart';
+import 'package:tiktok_flutter/helpers/helpers.dart';
 import 'package:video_player/video_player.dart';
 
 class DashboardState {
@@ -9,11 +12,15 @@ class DashboardState {
   List<Video> videoList = [];
   int prevVideo = 0;
   int actualScreen = 0;
+  bool isLoading;
+  File? videoPath;
 
   DashboardState(
       {required this.controller,
       required this.videoList,
+      required this.isLoading,
       required this.prevVideo,
+      required this.videoPath,
       required this.actualScreen});
 }
 
@@ -22,18 +29,26 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   DashboardCubit({required this.fireServiceImp})
       : super(DashboardState(
-            controller: null, videoList: [], prevVideo: 0, actualScreen: 0));
+            controller: null,
+            videoList: [],
+            prevVideo: 0,
+            isLoading: false,
+            videoPath: null,
+            actualScreen: 0));
 
   void _emitState() async => emit(DashboardState(
       controller: state.controller,
       videoList: state.videoList,
       prevVideo: state.prevVideo,
+      isLoading: state.isLoading,
+      videoPath: state.videoPath,
       actualScreen: state.actualScreen));
 
   getVideos() async {
     await FireApi().getVideoList().then((value) => state.videoList = value);
-    loadVideo(0);
+    loadVideo(2);
     loadVideo(1);
+    loadVideo(0);
   }
 
   changeVideo(index) async {
@@ -41,13 +56,11 @@ class DashboardCubit extends Cubit<DashboardState> {
       await state.videoList[index].loadController();
     }
     state.videoList[index].controller!.play();
-    //videoSource.listVideos[prevVideo].controller.removeListener(() {});
-
     if (state.videoList[state.prevVideo].controller != null)
       state.videoList[state.prevVideo].controller!.pause();
 
     state.prevVideo = index;
-    print('DashAtoms $index');
+
     _emitState();
   }
 
@@ -59,24 +72,23 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
   }
 
-// void _setLoading(bool isLoading) async => emit(DashboardState(
-//     isLoading: isLoading,
-//     controller: state.controller,
-//     videoList: state.videoList,
-//     prevVideo: state.prevVideo,
-//     actualScreen: state.actualScreen));
+  void _setLoading(bool isLoading) async => emit(DashboardState(
+      isLoading: isLoading,
+      controller: state.controller,
+      videoList: state.videoList,
+      videoPath: state.videoPath,
+      prevVideo: state.prevVideo,
+      actualScreen: state.actualScreen));
 
-// void pickVideo() async {
-//   var video = await videoPicker();
-//   if (video != null) {
-//     state.videoPath = File(video.path);
-//   } else {
-//     globalToast('Unable to pick video');
-//   }
-//   _emitState();
-// }
-
-// Stream<QuerySnapshot> getVideos() => fireServiceImp.getVideos();
+  void pickVideo() async {
+    var video = await videoPicker();
+    if (video != null) {
+      state.videoPath = File(video.path);
+    } else {
+      globalToast('Unable to pick video');
+    }
+    _emitState();
+  }
 
 // Future<File?> chooseAnotherVideo() async {
 //   var video = await videoPicker();
@@ -102,8 +114,8 @@ class DashboardCubit extends Cubit<DashboardState> {
 //   _emitState();
 // }
 
-// void uploadVideo({required String title, required String description}) async {
-//   fireServiceImp.uploadVideo(
-//       videoFile: state.videoPath!, title: title, description: description);
-// }
+  void uploadVideo({required String title, required String description}) async {
+    fireServiceImp.uploadVideo(
+        videoFile: state.videoPath!, title: title, description: description);
+  }
 }

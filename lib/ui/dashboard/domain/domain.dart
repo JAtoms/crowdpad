@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tiktok_flutter/dependency/cubit/dashboard_cubit/dashboard_cubit.dart';
+import 'package:tiktok_flutter/ui/dashboard/profile/profile_screen.dart';
 import 'package:tiktok_flutter/ui/global_components/bottom_nav_widget.dart';
-import 'package:tiktok_flutter/ui/profile/profile_screen.dart';
 
 import '../home/home_page.dart';
 
@@ -15,14 +15,14 @@ class Domain extends StatefulWidget {
 
 class _DomainState extends State<Domain> {
   Widget bottomPages({required int index}) {
-    final bottomPages = [
-      HomePage(),
-      HomePage(),
-      HomePage(),
-      HomePage(),
-      ProfileScreen()
-    ];
+    final bottomPages = [HomePage(), HomePage(), ProfileScreen()];
     return bottomPages[index];
+  }
+
+  @override
+  void initState() {
+    context.read<DashboardCubit>().getVideos();
+    super.initState();
   }
 
   @override

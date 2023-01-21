@@ -20,7 +20,7 @@ class BottomNavigation extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.symmetric(
-              horizontal: 5.heightAdjusted, vertical: 5.heightAdjusted),
+              horizontal: 18.heightAdjusted, vertical: 5.heightAdjusted),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
@@ -39,10 +39,8 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 BottomNavItem(index: 0, icon: GlobalAssets.home),
-                BottomNavItem(index: 1, icon: GlobalAssets.like),
-                BottomNavItem(index: 2, icon: GlobalAssets.add),
-                BottomNavItem(index: 3, icon: GlobalAssets.comment),
-                BottomNavItem(index: 4, icon: GlobalAssets.profile),
+                BottomNavItem(index: 1, icon: GlobalAssets.add),
+                BottomNavItem(index: 2, icon: GlobalAssets.profile),
               ],
             ),
           ),
@@ -82,7 +80,7 @@ class _BottomNavItemState extends State<BottomNavItem> {
                   color: widget.index == value
                       ? GlobalColors.primary
                       : Colors.black12,
-                  height: widget.index == 2
+                  height: widget.index == 1
                       ? 8.heightAdjusted
                       : 4.5.heightAdjusted),
             ),
